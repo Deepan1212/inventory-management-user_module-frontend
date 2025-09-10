@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SubmitProductRequest() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     productName: "",
     quantity: "",
@@ -42,6 +45,11 @@ export default function SubmitProductRequest() {
 
   return (
     <div className="submit-page">
+      {/* Global Back Button (outside the card) */}
+      <button className="back-btn" onClick={() => navigate("/dashboard")}>
+        ⬅ Back to Dashboard
+      </button>
+
       <div className="form-card">
         <h1 className="form-title">Submit Product Request</h1>
 
@@ -117,7 +125,11 @@ export default function SubmitProductRequest() {
 
           {/* Actions */}
           <div className="form-actions">
-            <button type="button" onClick={() => window.history.back()} className="btn ghost">
+            <button
+              type="button"
+              onClick={() => navigate("/dashboard")}
+              className="btn ghost"
+            >
               Cancel
             </button>
             <button type="submit" className="btn primary">
@@ -137,6 +149,8 @@ export default function SubmitProductRequest() {
           background: linear-gradient(135deg, #0a0f16, #0f1725, #08111a);
           color: #e7eef9;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          position: relative;
+          padding: 40px;
         }
         .form-card {
           background: linear-gradient(180deg, #101720, #121c27);
@@ -146,6 +160,7 @@ export default function SubmitProductRequest() {
           padding: 32px;
           width: 100%;
           max-width: 500px;
+          margin-top: 60px; /* leave space for top button */
         }
         .form-title {
           font-size: 24px;
@@ -153,6 +168,23 @@ export default function SubmitProductRequest() {
           text-align: center;
           margin-bottom: 24px;
           color: #1d89ff;
+        }
+        .back-btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: #1d89ff;
+          border: none;
+          color: #fff;
+          padding: 10px 16px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .back-btn:hover {
+          background: #0a58bf;
         }
         .form {
           display: grid;

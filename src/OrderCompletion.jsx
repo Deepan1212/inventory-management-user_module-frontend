@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OrderCompletion = () => {
+  const navigate = useNavigate();
+
   // Mock orders
   const [orders] = useState([
     { id: "ORD-1001", product: "Laptop", quantity: 2, date: "2025-09-06", status: "Processing" },
@@ -36,6 +39,11 @@ const OrderCompletion = () => {
 
   return (
     <div style={styles.page}>
+      {/* Back to Dashboard (top-right) */}
+      <button style={styles.backBtn} onClick={() => navigate("/dashboard")}>
+        ⬅ Back to Dashboard
+      </button>
+
       <div style={styles.card}>
         <h1 style={styles.title}>Order Tracking</h1>
 
@@ -151,9 +159,24 @@ const styles = {
     minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     background: "linear-gradient(135deg, #0a0f16, #0f1725, #08111a)",
-    padding: "20px",
+    padding: "40px",
+    position: "relative",
+  },
+  backBtn: {
+    position: "absolute",
+    top: "20px",
+    right: "20px",
+    background: "#1d89ff",
+    border: "none",
+    color: "#fff",
+    padding: "10px 16px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "600",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
   },
   card: {
     width: "100%",
@@ -164,6 +187,7 @@ const styles = {
     boxShadow: "0 12px 28px rgba(0,0,0,0.5)",
     padding: "24px",
     color: "#fff",
+    marginTop: "60px", // leave space for top button
   },
   title: {
     textAlign: "center",

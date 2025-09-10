@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ManageQuote = () => {
+  const navigate = useNavigate();
+
   // Mock quotes
   const [quotes] = useState([
     { id: 1, product: "Laptop", supplier: "ABC Supplies", quantity: 2, price: 78000, date: "2025-09-05", status: "Pending" },
@@ -42,6 +45,11 @@ const ManageQuote = () => {
 
   return (
     <div style={styles.page}>
+      {/* Back to Dashboard button */}
+      <button style={styles.backBtn} onClick={() => navigate("/dashboard")}>
+        ⬅ Back to Dashboard
+      </button>
+
       <div style={styles.card}>
         <h1 style={styles.title}>Manage Quotes</h1>
 
@@ -123,42 +131,104 @@ const statusColor = (status) => {
 // Styles
 const styles = {
   page: {
-    minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center",
-    background: "linear-gradient(135deg, #0a0f16, #0f1725, #08111a)", padding: "20px",
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    background: "linear-gradient(135deg, #0a0f16, #0f1725, #08111a)",
+    padding: "40px",
+    position: "relative",
+  },
+  backBtn: {
+    position: "absolute",
+    top: "20px",
+    right: "20px",
+    background: "#1d89ff",
+    border: "none",
+    color: "#fff",
+    padding: "10px 16px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "600",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
   },
   card: {
-    width: "100%", maxWidth: "1000px", background: "linear-gradient(180deg, #101720, #121c27)",
-    border: "1px solid #717e8fff", borderRadius: "16px", boxShadow: "0 12px 28px rgba(0,0,0,0.5)", padding: "24px", color: "#fff",
+    width: "100%",
+    maxWidth: "1000px",
+    background: "linear-gradient(180deg, #101720, #121c27)",
+    border: "1px solid #717e8fff",
+    borderRadius: "16px",
+    boxShadow: "0 12px 28px rgba(0,0,0,0.5)",
+    padding: "24px",
+    color: "#fff",
+    marginTop: "60px",
   },
-  title: { textAlign: "center", fontSize: "26px", fontWeight: "bold", color: "#1d89ff", marginBottom: "20px" },
+  title: {
+    textAlign: "center",
+    fontSize: "26px",
+    fontWeight: "bold",
+    color: "#1d89ff",
+    marginBottom: "20px",
+  },
   table: { width: "100%", borderCollapse: "collapse" },
   th: { borderBottom: "2px solid #1e2a3a", padding: "10px", textAlign: "left", color: "#1d89ff" },
   td: { padding: "10px", borderBottom: "1px solid #1e2a3a" },
   acceptBtn: {
-    marginRight: "8px", padding: "6px 12px", borderRadius: "6px", border: "none",
-    background: "#22c55e", color: "#fff", fontWeight: "600", cursor: "pointer",
+    marginRight: "8px",
+    padding: "6px 12px",
+    borderRadius: "6px",
+    border: "none",
+    background: "#22c55e",
+    color: "#fff",
+    fontWeight: "600",
+    cursor: "pointer",
   },
   declineBtn: {
-    padding: "6px 12px", borderRadius: "6px", border: "none",
-    background: "#ef4444", color: "#fff", fontWeight: "600", cursor: "pointer",
+    padding: "6px 12px",
+    borderRadius: "6px",
+    border: "none",
+    background: "#ef4444",
+    color: "#fff",
+    fontWeight: "600",
+    cursor: "pointer",
   },
   modalOverlay: {
-    position: "fixed", top: 0, left: 0, width: "100%", height: "100%",
-    background: "rgba(0,0,0,0.6)", display: "flex", justifyContent: "center", alignItems: "center",
+    position: "fixed",
+    top: 0, left: 0, width: "100%", height: "100%",
+    background: "rgba(0,0,0,0.6)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   modal: {
-    background: "#1c2735", padding: "24px", borderRadius: "12px", width: "400px",
-    boxShadow: "0 6px 20px rgba(0,0,0,0.5)", color: "#fff",
+    background: "#1c2735",
+    padding: "24px",
+    borderRadius: "12px",
+    width: "400px",
+    boxShadow: "0 6px 20px rgba(0,0,0,0.5)",
+    color: "#fff",
   },
   modalTitle: { fontSize: "20px", fontWeight: "bold", marginBottom: "12px", color: "#ef4444" },
   textarea: {
-    width: "100%", minHeight: "100px", padding: "10px", borderRadius: "8px",
-    border: "1px solid #717e8fff", background: "#101720", color: "#fff", marginBottom: "12px",
+    width: "100%",
+    minHeight: "100px",
+    padding: "10px",
+    borderRadius: "8px",
+    border: "1px solid #717e8fff",
+    background: "#101720",
+    color: "#fff",
+    marginBottom: "12px",
   },
   modalActions: { display: "flex", justifyContent: "space-between" },
   cancelBtn: {
-    padding: "6px 12px", borderRadius: "6px", border: "none",
-    background: "#555", color: "#fff", fontWeight: "600", cursor: "pointer",
+    padding: "6px 12px",
+    borderRadius: "6px",
+    border: "none",
+    background: "#555",
+    color: "#fff",
+    fontWeight: "600",
+    cursor: "pointer",
   },
 };
 

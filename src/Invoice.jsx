@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Invoice = () => {
+  const navigate = useNavigate();
+
   // Mock invoices
   const [invoices] = useState([
     { id: "INV-2025-001", product: "Laptop", supplier: "ABC Supplies", quantity: 2, price: 78000, total: 156000, date: "2025-09-06", status: "Paid" },
@@ -38,6 +41,11 @@ const Invoice = () => {
 
   return (
     <div style={styles.page}>
+      {/* Back to Dashboard */}
+      <button style={styles.backBtn} onClick={() => navigate("/dashboard")}>
+        ⬅ Back to Dashboard
+      </button>
+
       <div style={styles.card}>
         <h1 style={styles.title}>Invoices</h1>
 
@@ -110,18 +118,49 @@ const statusColor = (status) => {
 // Styles
 const styles = {
   page: {
-    minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center",
-    background: "linear-gradient(135deg, #0a0f16, #0f1725, #08111a)", padding: "20px",
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    background: "linear-gradient(135deg, #0a0f16, #0f1725, #08111a)",
+    padding: "40px",
+    position: "relative",
+  },
+  backBtn: {
+    position: "absolute",
+    top: "20px",
+    right: "20px",
+    background: "#1d89ff",
+    border: "none",
+    color: "#fff",
+    padding: "10px 16px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "600",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
   },
   card: {
-    width: "100%", maxWidth: "1000px", background: "linear-gradient(180deg, #101720, #121c27)",
-    border: "1px solid #717e8fff", borderRadius: "16px", boxShadow: "0 12px 28px rgba(0,0,0,0.5)", padding: "24px", color: "#fff",
+    width: "100%",
+    maxWidth: "1000px",
+    background: "linear-gradient(180deg, #101720, #121c27)",
+    border: "1px solid #717e8fff",
+    borderRadius: "16px",
+    boxShadow: "0 12px 28px rgba(0,0,0,0.5)",
+    padding: "24px",
+    color: "#fff",
+    marginTop: "60px", // so back button doesn't overlap
   },
   title: { textAlign: "center", fontSize: "26px", fontWeight: "bold", color: "#1d89ff", marginBottom: "20px" },
   filters: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "12px", marginBottom: "20px" },
   input: {
-    padding: "10px", borderRadius: "8px", border: "1px solid #717e8fff", background: "#1c2735",
-    color: "#fff", outline: "none", fontSize: "14px",
+    padding: "10px",
+    borderRadius: "8px",
+    border: "1px solid #717e8fff",
+    background: "#1c2735",
+    color: "#fff",
+    outline: "none",
+    fontSize: "14px",
   },
   table: { width: "100%", borderCollapse: "collapse" },
   th: { borderBottom: "2px solid #1e2a3a", padding: "10px", textAlign: "left", color: "#1d89ff" },

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PurchaseHistory = () => {
+  const navigate = useNavigate();
+
   // Mock data
   const [purchases] = useState([
     { id: 1, product: "Laptop", quantity: 2, price: 80000, date: "2025-09-01", status: "Completed" },
@@ -33,6 +36,11 @@ const PurchaseHistory = () => {
 
   return (
     <div style={styles.page}>
+      {/* Back to Dashboard (top-right) */}
+      <button style={styles.backBtn} onClick={() => navigate("/dashboard")}>
+        ⬅ Back to Dashboard
+      </button>
+
       <div style={styles.container}>
         <h1 style={styles.title}>Purchase History</h1>
 
@@ -111,12 +119,27 @@ const PurchaseHistory = () => {
                   <td style={styles.td}>{p.quantity}</td>
                   <td style={styles.td}>₹{p.price.toLocaleString()}</td>
                   <td style={styles.td}>{p.date}</td>
-                  <td style={styles.td}>{p.status}</td>
+                  <td
+                    style={{
+                      ...styles.td,
+                      color:
+                        p.status === "Completed"
+                          ? "#22c55e"
+                          : p.status === "Pending"
+                          ? "#facc15"
+                          : "#ef4444",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {p.status}
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td style={styles.td} colSpan="5">No purchases found</td>
+                <td style={styles.td} colSpan="5">
+                  No purchases found
+                </td>
               </tr>
             )}
           </tbody>
@@ -136,6 +159,21 @@ const styles = {
     background: "linear-gradient(135deg, #0a0f16, #0f1725, #08111a)",
     color: "#fff",
     padding: "40px",
+    position: "relative",
+  },
+  backBtn: {
+    position: "absolute",
+    top: "20px",
+    right: "20px",
+    background: "#1d89ff",
+    border: "none",
+    color: "#fff",
+    padding: "10px 16px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "600",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
   },
   container: {
     width: "100%",
@@ -145,6 +183,7 @@ const styles = {
     borderRadius: "16px",
     boxShadow: "0 12px 28px rgba(0,0,0,0.5)",
     padding: "24px",
+    marginTop: "60px", // so back button doesn't overlap
   },
   title: {
     textAlign: "center",

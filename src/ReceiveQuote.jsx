@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ReceiveQuote = () => {
+  const navigate = useNavigate();
+
   // Mock data for multiple quotes
   const [quotes] = useState([
     { id: 1, product: "Laptop", supplier: "ABC Supplies", quantity: 2, price: 78000, date: "2025-09-05", status: "Pending" },
@@ -11,6 +14,11 @@ const ReceiveQuote = () => {
 
   return (
     <div style={styles.page}>
+      {/* Back to Dashboard (top-right) */}
+      <button style={styles.backBtn} onClick={() => navigate("/dashboard")}>
+        ⬅ Back to Dashboard
+      </button>
+
       <div style={styles.card}>
         <h1 style={styles.title}>Received Quotes</h1>
 
@@ -34,14 +42,22 @@ const ReceiveQuote = () => {
                   <td style={styles.td}>{q.quantity}</td>
                   <td style={styles.td}>₹{q.price.toLocaleString()}</td>
                   <td style={styles.td}>{q.date}</td>
-                  <td style={{ ...styles.td, color: statusColor(q.status), fontWeight: "600" }}>
+                  <td
+                    style={{
+                      ...styles.td,
+                      color: statusColor(q.status),
+                      fontWeight: "600",
+                    }}
+                  >
                     {q.status}
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td style={styles.td} colSpan="6">No quotes received yet.</td>
+                <td style={styles.td} colSpan="6">
+                  No quotes received yet.
+                </td>
               </tr>
             )}
           </tbody>
@@ -54,9 +70,13 @@ const ReceiveQuote = () => {
 // Status colors
 const statusColor = (status) => {
   switch (status) {
-    case "Approved": return "#22c55e"; // green
-    case "Declined": return "#ef4444"; // red
-    case "Pending": default: return "#facc15"; // yellow
+    case "Approved":
+      return "#22c55e"; // green
+    case "Declined":
+      return "#ef4444"; // red
+    case "Pending":
+    default:
+      return "#facc15"; // yellow
   }
 };
 
@@ -66,9 +86,24 @@ const styles = {
     minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     background: "linear-gradient(135deg, #0a0f16, #0f1725, #08111a)",
-    padding: "20px",
+    padding: "40px",
+    position: "relative",
+  },
+  backBtn: {
+    position: "absolute",
+    top: "20px",
+    right: "20px",
+    background: "#1d89ff",
+    border: "none",
+    color: "#fff",
+    padding: "10px 16px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "600",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
   },
   card: {
     width: "100%",
@@ -79,6 +114,7 @@ const styles = {
     boxShadow: "0 12px 28px rgba(0,0,0,0.5)",
     padding: "24px",
     color: "#fff",
+    marginTop: "60px", // leave space for top button
   },
   title: {
     textAlign: "center",
