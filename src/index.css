@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+html,
+body,
+#root {
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body {
+  background-color: var(--black); /* Matches dark theme */
+  color: var(--white);
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

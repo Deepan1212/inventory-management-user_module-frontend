@@ -1,0 +1,218 @@
+/* Register.css - Aesthetic black and blue customization */
+
+:root {
+  --black: #000000;
+  --dark-gray: #1a1a1a;
+  --blue: #007bff; /* Primary blue accent */
+  --light-blue: #339aff;
+  --white: #ffffff;
+  --gray: #cccccc;
+  --error-red: #ff4d4d;
+}
+
+.register-container.dark {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.register-container.light {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.header {
+  flex-shrink: 0; /* Doesn't shrink */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray);
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: var(--blue);
+}
+
+.header h2 {
+  font-size: 1.5rem;
+}
+
+.theme-toggle {
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.theme-toggle:hover {
+  background-color: var(--light-blue);
+}
+
+.main-content {
+  flex: 1; /* Grows to fill space between header and footer */
+  display: flex;
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  padding: 2rem;
+  min-height: 0; /* Allows flex child to shrink if needed */
+}
+
+.form-section {
+  width: 1000%;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.step {
+  padding: 0.5rem 1rem;
+  background-color: var(--dark-gray);
+  border-radius: 4px;
+}
+
+.step.active {
+  background-color: var(--blue);
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  background-color: var(--dark-gray);
+  color: var(--white);
+}
+
+.form-group input::placeholder {
+  color: var(--gray);
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  width: 96%;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.error {
+  color: var(--error-red);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.terms .error {
+  margin-left: 1.5rem; /* Align under checkbox */
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.secondary {
+  background-color: transparent;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.primary {
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.primary:hover {
+  background-color: var(--light-blue);
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+
+.footer {
+  flex-shrink: 0; /* Doesn't shrink */
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid var(--gray);
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* Light theme overrides */
+.register-container.light .form-group input,
+.register-container.light .form-group select {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.register-container.light .step {
+  background-color: #f0f0f0;
+  color: var(--black);
+}
+
+.register-container.light .step.active {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.register-container.light .why-section li span {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.register-container.light .why-section li div p,
+.register-container.light .note,
+.register-container.light .footer {
+  color: var(--black);
+}

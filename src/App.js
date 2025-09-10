@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import Login from './Login';
+import Register from './Register';
+import SubmitProductRequest from './SubmitProductRequest'; 
+import Dashboard from "./Dashboard";
+import PurchaseHistory from "./PurchaseHistory";
+import ReceiveQuote from "./ReceiveQuote";
+import ManageQuote from "./ManageQuote";
+import Invoice from "./Invoice";
+import OrderCompletion from "./OrderCompletion";
+import Feedback from "./Feedback";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={{ height: '100vh', width: '100%' }}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/submit-request" element={<SubmitProductRequest />} /> 
+          <Route path="/purchase-history" element={<PurchaseHistory />} />
+          <Route path="/receive-quote" element={<ReceiveQuote />} />
+          <Route path="/manage-quote" element={<ManageQuote />} />
+          <Route path="/invoice" element={<Invoice />} />  
+          <Route path="/order-completion" element={<OrderCompletion />} />
+          <Route path="/feedback" element={<Feedback />} />       
+          
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
