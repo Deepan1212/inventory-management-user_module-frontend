@@ -24,7 +24,8 @@ export default function Dashboard() {
     <div style={styles.page}>
       {/* Header */}
       <header style={styles.header}>
-        <h1 style={styles.logo}>IM Dashboard</h1>
+        <h1 style={styles.logo}>User Management Dashboard</h1>
+        <h2 style={styles.logo}>Inventory Management</h2>
         <div style={styles.profileWrapper}>
           <div
             style={styles.profileIcon}
